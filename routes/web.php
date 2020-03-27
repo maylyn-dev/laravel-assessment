@@ -27,6 +27,4 @@ Route::get('/question4/{string?}', 'Question4Controller@solution');
 
 Route::get('/question5/{array?}', 'Question5Controller@solution');
 
-Route::get('/question6', function () {
-    return view('question6');
-});
+Route::get('/question6', 'Question6Controller@solution');
