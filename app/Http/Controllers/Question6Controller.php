@@ -59,9 +59,10 @@ class Question6Controller extends Controller
 
     public function getHourlyTransaction()
     {
-        $transactions = DB::table('transactions')
-                        ->select(DB::raw('HOUR(transaction_date) as hour, COUNT(*) as transactions'))
-                        ->groupBy(DB::raw('HOUR(transaction_date)'))
+        $transactions = DB::table('test_time')
+                        ->select('test_time.hour', DB::raw('SUM(SIGN(COALESCE(transactions.id, 0))) as count'))
+                        ->leftJoin('transactions', 'test_time.hour', '=', DB::raw('HOUR(transactions.transaction_date)'))
+                        ->groupBy('test_time.hour')
                         ->get();
 
         return $transactions;
