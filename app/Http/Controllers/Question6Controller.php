@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Customer;
+use App\Transaction;
 
 class Question6Controller extends Controller
 {
@@ -13,6 +14,7 @@ class Question6Controller extends Controller
         $topSpender = $this->getTopSpender();
         $adamsOrders = $this->getAdamsOrderItems();
         $averageSales = $this->getAverageSaleOfCustomers();
+        $hourlyTransactions = $this->getHourlyTransaction();
 
         return array(
             'Is this a good database design? Why?' => 'No, because it can still be normalized.',
@@ -21,6 +23,7 @@ class Question6Controller extends Controller
             'Top Spender' => $topSpender,
             'Adam\'s Orders so far' => $adamsOrders,
             'Average Sale Value' => $averageSales,
+            'Hourly Transactions' => $hourlyTransactions
         );
     }
     
@@ -52,5 +55,15 @@ class Question6Controller extends Controller
                     ->get();
 
         return $averageSales;
+    }
+
+    public function getHourlyTransaction()
+    {
+        $transactions = DB::table('transactions')
+                        ->select(DB::raw('HOUR(transaction_date) as hour, COUNT(*) as transactions'))
+                        ->groupBy(DB::raw('HOUR(transaction_date)'))
+                        ->get();
+
+        return $transactions;
     }
 }
