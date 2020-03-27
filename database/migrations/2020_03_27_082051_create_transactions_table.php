@@ -15,12 +15,9 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->integer('order_id');
             $table->timestamp('transaction_date');
-
-            $table->foreignId('order_id')->constrained()->onDelete('cascade');
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**

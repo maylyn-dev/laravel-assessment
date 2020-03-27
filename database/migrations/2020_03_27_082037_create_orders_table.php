@@ -18,12 +18,11 @@ class CreateOrdersTable extends Migration
             $table->string('item');
             $table->integer('quantity');
             $table->double('unit_price');
+            $table->integer('customer_id');
             $table->timestamps();
-
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
         });
 
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
     }
 
     /**
