@@ -11,6 +11,7 @@ class Question3Controller extends Controller
         $unpairedElement = $this->getUnpairedElement($arr);
 
         return array(
+            'Array' => $arr,
             'Unpaired Element' => $unpairedElement
         );
     }

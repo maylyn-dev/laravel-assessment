@@ -11,7 +11,6 @@ class Question5Controller extends Controller
         $price = $arr;
         $n = count($price);
         $count = 0;
-
         $solution = array();
         
         if ($n == 1) {
@@ -44,6 +43,9 @@ class Question5Controller extends Controller
             $count++; 
         }
 
-        return $solution;
+        return array(
+            'Stock Market Data' => $arr,
+            'Solution' => $solution
+        );
     }
 }

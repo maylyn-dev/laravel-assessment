@@ -12,6 +12,7 @@ class Question1Controller extends Controller
         $maxGap = $this->getMaxGap($binaryArr);
 
         return array(
+            'Positive Integer' => intval($number),
             'Maximum Binary Gap' => $maxGap
         );
     }

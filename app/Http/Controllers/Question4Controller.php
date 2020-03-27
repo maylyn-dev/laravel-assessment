@@ -31,6 +31,7 @@ class Question4Controller extends Controller
         }
 
         return array(
+            'String' => $string,
             'Most Frequent Character' => $mostFrequent,
             'Least Frequent Character' => $leastFrequent
         );
